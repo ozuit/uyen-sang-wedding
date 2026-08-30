@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import type { InvitationContent } from "../content/invitation.vi";
 import { figmaAssets } from "../figma/assets";
 import { Section } from "./_shared";
@@ -16,8 +17,18 @@ function pad2(n: number) {
   return String(n).padStart(2, "0");
 }
 
-function Countdown({ target }: { target: Date }) {
-  const diff = Math.max(0, target.getTime() - Date.now());
+function Countdown({ target }: { target: Date | null }) {
+  const [now, setNow] = useState<number | null>(null);
+
+  useEffect(() => {
+    const updateNow = () => setNow(Date.now());
+    updateNow();
+    const interval = window.setInterval(updateNow, 1000);
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const diff =
+    target && now !== null ? Math.max(0, target.getTime() - now) : 0;
   const totalSeconds = Math.floor(diff / 1000);
   const days = Math.floor(totalSeconds / (3600 * 24));
   const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
@@ -72,7 +83,7 @@ export default function Events({ content }: { content: InvitationContent }) {
   const partyDate = party?.dateText ? parseDdMmYyyy(party.dateText) : null;
   const partyTarget = partyDate
     ? new Date(partyDate.yyyy, partyDate.mm - 1, partyDate.dd, 11, 0, 0)
-    : new Date(Date.now() + 1000 * 60 * 60 * 24);
+    : null;
 
   return (
     <Section id="events">
