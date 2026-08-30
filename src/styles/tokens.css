@@ -1,0 +1,14 @@
+:root {
+  /* Match Figma "Orchid" palette */
+  --invite-bg: #fff3fb;
+  --invite-text: #4d4d4d;
+  --invite-muted: #999999;
+  --invite-card: #ffffff;
+  --invite-border: #e6e6e6;
+  --invite-accent: #e382d3;
+  --invite-accent-strong: #b70b9d;
+
+  --font-sans: 'Comfortaa', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial;
+  --font-script: 'Allura', cursive;
+}
+

@@ -1,0 +1,48 @@
+.figmaViewport {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Wrapper reserves height even when using transform scaling */
+.figmaCanvasWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: calc(var(--figma-canvas-height, 0) * var(--figma-scale, 1) * 1px);
+}
+
+/*
+  Scale a fixed 1440px-wide "Figma canvas" to fit viewport width
+  while keeping pixel-perfect proportions.
+
+  Prefer `zoom` when available (affects layout), fallback to `transform: scale`
+  (does not affect layout; acceptable for quick preview).
+*/
+.figmaCanvas {
+  width: 1440px;
+  margin: 0 auto;
+  background: var(--invite-bg);
+}
+
+/* Narrow viewports: real CSS px for text (no zoom ~0.26); layout uses responsive Tailwind */
+.figmaCanvas.figmaCanvas--fluid {
+  width: 100%;
+  max-width: 100%;
+}
+
+@supports (zoom: 1) {
+  .figmaCanvas {
+    zoom: var(--figma-scale, 1);
+  }
+  .figmaCanvasWrapper {
+    height: auto;
+  }
+}
+
+@supports not (zoom: 1) {
+  .figmaCanvas {
+    transform: scale(var(--figma-scale, 1));
+    transform-origin: top center;
+  }
+}
+
