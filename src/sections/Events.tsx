@@ -80,9 +80,17 @@ function OpenMapButton({ href }: { href: string }) {
 export default function Events({ content }: { content: InvitationContent }) {
   const church = content.events.find((e) => e.key === "church");
   const party = content.events.find((e) => e.key === "party");
-  const partyDate = party?.dateText ? parseDdMmYyyy(party.dateText) : null;
-  const partyTarget = partyDate
-    ? new Date(partyDate.yyyy, partyDate.mm - 1, partyDate.dd, 11, 0, 0)
+  const countdownDate = church?.dateText ? parseDdMmYyyy(church.dateText) : null;
+  const countdownTime = church?.timeText?.match(/(\d{1,2}):(\d{2})/);
+  const countdownTarget = countdownDate
+    ? new Date(
+        countdownDate.yyyy,
+        countdownDate.mm - 1,
+        countdownDate.dd,
+        countdownTime ? Number(countdownTime[1]) : 11,
+        countdownTime ? Number(countdownTime[2]) : 0,
+        0,
+      )
     : null;
 
   return (
@@ -93,11 +101,11 @@ export default function Events({ content }: { content: InvitationContent }) {
         </div>
 
         <div className="mt-6 text-center font-sans text-[22px] font-medium leading-[1.35] text-[var(--invite-muted)] md:mt-8 md:text-[20px] md:leading-[1.2]">
-          {party?.dateText ?? ""}
+          {church?.dateText ?? ""}
         </div>
 
         <div className="mt-8 flex justify-center">
-          <Countdown target={partyTarget} />
+          <Countdown target={countdownTarget} />
         </div>
 
         <div className="mt-10 flex w-full min-w-0 flex-col items-stretch gap-6 md:h-[706px] md:flex-row md:items-stretch md:gap-5 lg:gap-6">
