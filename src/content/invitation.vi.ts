@@ -107,7 +107,7 @@ export const invitationVi: InvitationContent = {
     rightText: '',
   },
   gallery: {
-    title: 'Hình cô dâu & chú rể',
+    title: 'Album cưới',
     images: [
       { src: publicUrl('/gallery/01.webp'), alt: 'Uyên & Sang 01' },
       { src: publicUrl('/gallery/02.webp'), alt: 'Uyên & Sang 02' },
