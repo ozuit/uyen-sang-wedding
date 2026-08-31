@@ -1,3 +1,4 @@
+import BackgroundMusic from "../components/BackgroundMusic";
 import FigmaCanvas from "../components/FigmaCanvas";
 import { invitationVi } from "../content/invitation.vi";
 import CountdownSection from "../sections/CountdownSection";
@@ -11,6 +12,7 @@ import RSVP from "../sections/RSVP";
 export default function InvitationPage() {
   return (
     <main className="min-h-dvh">
+      <BackgroundMusic />
       <FigmaCanvas>
         <Hero content={invitationVi} />
         <div className="px-4 py-[50px] md:px-10 lg:px-16">
