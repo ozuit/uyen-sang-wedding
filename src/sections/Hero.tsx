@@ -23,7 +23,7 @@ export default function Hero({ content }: { content: InvitationContent }) {
             </div>
           </div>
           <div className="mt-5 max-w-[22rem] font-sans text-[22px] font-bold leading-[1.3] opacity-95 md:mt-4 md:max-w-none md:text-[20px] md:leading-[1.2]">
-            {content.events.find((e) => e.key === "party")?.dateText ?? ""}
+            {content.events.find((e) => e.key === "church")?.dateText ?? ""}
           </div>
         </div>
       </Section>

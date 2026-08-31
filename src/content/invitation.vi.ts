@@ -37,8 +37,8 @@ export type InvitationContent = {
     groomNote?: string
   }
   families: {
-    brideParents: string
-    groomParents: string
+    brideParents: string[]
+    groomParents: string[]
   }
   events: InvitationEvent[]
   rsvp: RsvpConfig
@@ -55,38 +55,37 @@ export type InvitationContent = {
 export const invitationVi: InvitationContent = {
   locale: 'vi',
   couple: {
-    brideName: 'Tống Mỹ Nhung',
-    brideNote: 'Teresa',
-    groomName: 'Châu Thọ Triết',
-    groomNote: 'Giacobe',
+    brideName: 'Tống Phương Uyên',
+    groomName: 'Lê Quang Sang',
   },
   families: {
-    brideParents: 'Ông Bà: Tống Đức Cường, Huỳnh Thị Mỹ',
-    groomParents: 'Ông Bà: Giuse Châu Thọ Thông, Agata Nguyễn Thị Hằng Nga',
+    groomParents: ['Ông: Lê Quang Quân', 'Bà: Nguyễn Thị Ngọc Hoa'],
+    brideParents: ['Ông: Tống Đức Dũng', 'Bà: Trần Thị Huy Trang'],
   },
   events: [
     {
       key: 'church',
-      title: 'Lễ thành hôn (nhà thờ)',
-      dateText: 'Thứ Bảy, 09/05/2026',
-      timeText: '09:30',
-      lunarText: 'Nhằm 23/03 năm Bính Ngọ',
-      locationName: 'Giáo điểm Uyên Hưng',
-      addressLines: ['Giáo xứ Bến Sắn', 'Giáo phận Phú Cường'],
-      googleMapsUrl: 'https://maps.app.goo.gl/u3vF4a3JkwrVbvzi8',
-      mapQueryForEmbed: 'Giáo điểm Uyên Hưng, Giáo xứ Bến Sắn, Giáo phận Phú Cường',
+      title: 'Tiệc nhà trai',
+      dateText: 'Thứ bảy 07/11/2026',
+      timeText: '11:00',
+      lunarText: 'Nhằm 29/09 năm Bính Ngọ',
+      locationName: 'Khu phố 3, phường Bình Cơ, TP.HCM',
+      addressLines: [],
+      googleMapsUrl:
+        'https://www.google.com/maps/search/?api=1&query=Khu+ph%E1%BB%91+3,+ph%C6%B0%E1%BB%9Dng+B%C3%ACnh+C%C6%A1,+TP.HCM',
+      mapQueryForEmbed: 'Khu phố 3, phường Bình Cơ, TP.HCM',
     },
     {
       key: 'home',
       title: 'Lễ tại tư gia',
-      dateText: 'Chủ Nhật, 10/05/2026',
+      dateText: 'Thứ bảy, ngày 07/11/2026',
       timeText: '09:00',
-      lunarText: 'Nhằm 24/03 năm Bính Ngọ',
+      lunarText: 'Nhằm 29/09 năm Bính Ngọ',
     },
     {
       key: 'party',
-      title: 'Tiệc chung vui',
-      dateText: 'Chủ Nhật, 10/05/2026',
+      title: 'Tiệc nhà gái',
+      dateText: 'Chủ nhật 01/11/2026',
       timeText: '11:00',
       locationName: 'Trung tâm văn hóa (cơ sở 2) Tân Uyên',
       addressLines: [

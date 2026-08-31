@@ -50,10 +50,12 @@ export default function CoupleIntro({
                 {content.couple.groomName}
               </div>
               <div className="mt-3 text-[22px] leading-[1.4] text-(--invite-text) md:text-[20px] md:leading-[1.2]">
-                <div className="font-light">Con của</div>
-                <div className="font-medium">
-                  {content.families.groomParents}
-                </div>
+                <div className="font-light">Song thân</div>
+                {content.families.groomParents.map((line) => (
+                  <div key={line} className="font-medium">
+                    {line}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -68,10 +70,12 @@ export default function CoupleIntro({
                 {content.couple.brideName}
               </div>
               <div className="mt-3 text-[22px] leading-[1.4] text-(--invite-text) md:text-[20px] md:leading-[1.2]">
-                <div className="font-light">Con của</div>
-                <div className="font-medium">
-                  {content.families.brideParents}
-                </div>
+                <div className="font-light">Song thân</div>
+                {content.families.brideParents.map((line) => (
+                  <div key={line} className="font-medium">
+                    {line}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
