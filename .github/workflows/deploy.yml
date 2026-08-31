@@ -30,11 +30,11 @@ jobs:
       - name: Install
         run: npm ci
 
-      # main → /repo/ (GitHub Pages default URL). release → / (custom domain at site root).
+      # Custom domain configured — always build for site root (/).
       - name: Build
         run: npm run build
         env:
-          PAGES_BASE: ${{ github.ref_name == 'release' && 'root' || 'repository' }}
+          PAGES_BASE: root
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
