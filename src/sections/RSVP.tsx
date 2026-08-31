@@ -160,10 +160,12 @@ export default function RSVP({ content }: { content: InvitationContent }) {
                       type="button"
                       onClick={() => setForm((p) => ({ ...p, attendance: opt.key }))}
                       className={[
-                        'box-border min-h-[48px] w-full rounded-xl px-3 py-2 text-center font-[family-name:var(--font-sans)] text-[15px] font-bold leading-snug text-[#808080] transition md:min-h-0 md:flex-1 md:min-w-0 md:rounded-none md:px-4 md:py-[22px] md:text-left md:text-[16px]',
+                        'box-border min-h-[48px] w-full rounded-xl px-3 py-2 text-center font-[family-name:var(--font-sans)] text-[15px] font-bold leading-snug text-[#808080] outline-none transition md:min-h-0 md:flex-1 md:min-w-0 md:rounded-none md:px-4 md:py-[22px] md:text-left md:text-[16px]',
                         isFirst ? 'md:rounded-l-[20px]' : '',
                         isLast ? 'md:rounded-r-[20px]' : '',
-                        selected ? 'bg-white shadow-sm md:shadow-none' : 'bg-[#f8f7f7]',
+                        selected
+                          ? 'border-2 border-[var(--invite-accent)] bg-white shadow-sm ring-2 ring-[var(--invite-accent)] md:shadow-none'
+                          : 'border border-[var(--invite-border)] bg-[#f8f7f7]',
                       ].join(' ')}
                     >
                       {opt.label}
