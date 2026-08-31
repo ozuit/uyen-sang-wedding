@@ -8,8 +8,7 @@ export type ShareMeta = {
 
 export const shareMeta: ShareMeta = {
   title: 'Thiệp mời cưới Uyên & Sang',
-  description:
-    'Trân trọng kính mời bạn đến dự lễ cưới Lê Quang Sang & Tống Phương Uyên.',
+  description: 'Ngày vui sẽ trọn vẹn hơn khi có sự hiện diện của bạn.',
   imagePath: '/gallery/20.webp',
   siteName: 'uyen-sang-wedding.online',
 }
