@@ -32,10 +32,10 @@ export default function CoupleIntro({
       <div className="w-full rounded-[20px] bg-white px-5 py-8 shadow-[0px_0px_40px_0px_rgba(231,103,103,0.15)] md:px-[60px] md:py-[48px]">
         <div className="text-center">
           <div className="font-sans text-[34px] font-bold leading-[1.2] text-(--invite-accent-strong) md:text-[39px]">
-            Cô dâu &amp; chú rể
+            Hai bên gia đình
           </div>
           <div className="mx-auto mt-3 w-full text-center font-sans text-[22px] font-medium leading-[1.45] text-(--invite-muted) md:text-[20px] md:leading-[1.2]">
-            Trân trọng kính mời bạn đến tham dự hôn lễ của chúng mình.
+            Rất vinh dự được đón tiếp
           </div>
         </div>
 
