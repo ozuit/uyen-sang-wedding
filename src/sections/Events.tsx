@@ -119,11 +119,6 @@ export default function Events({ content }: { content: InvitationContent }) {
                   <div className="w-full min-w-0 text-center text-[32px] font-bold leading-[1.2] md:text-[39px]">
                     {church?.title ?? "Lễ thành hôn"}
                   </div>
-                  <img
-                    alt=""
-                    src={figmaAssets.imgVector10}
-                    className="w-full max-w-[min(100%,387px)] md:max-w-full"
-                  />
                 </div>
                 <div className="flex w-full min-w-0 flex-col items-center gap-1 text-center md:gap-1.5">
                   <div className="text-[22px] font-bold leading-[1.2] md:text-[20px]">
@@ -173,11 +168,6 @@ export default function Events({ content }: { content: InvitationContent }) {
                   <div className="w-full min-w-0 text-center text-[32px] font-bold leading-[1.2] md:text-[39px]">
                     {party?.title ?? "Tiệc cưới"}
                   </div>
-                  <img
-                    alt=""
-                    src={figmaAssets.imgVector11}
-                    className="w-full max-w-[min(100%,289px)] md:max-w-full"
-                  />
                 </div>
                 <div className="flex w-full min-w-0 flex-col items-center gap-1 text-center md:gap-1.5">
                   <div className="text-[22px] font-bold leading-[1.2] md:text-[20px]">
