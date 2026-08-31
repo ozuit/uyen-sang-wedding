@@ -134,7 +134,7 @@ export default function RSVP({ content }: { content: InvitationContent }) {
                 className="mt-2 box-border h-[140px] w-full max-w-full min-w-0 rounded-[16px] border-2 border-[var(--invite-border)] bg-[#f8f7f7] px-3 py-3 text-[16px] outline-none focus:ring-2 focus:ring-[var(--invite-accent)] md:h-[181px] md:px-5 md:py-4 md:text-[18px]"
                 value={form.message}
                 onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
-                placeholder="Lời nhắn…"
+                placeholder="Vài dòng gửi đến dâu rể"
               />
             </div>
 
