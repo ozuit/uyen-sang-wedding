@@ -1,14 +1,25 @@
 /**
  * Dán file này vào Apps Script gắn với Google Sheet (Mở Sheet → Tiện ích mở rộng → Apps Script).
- * Triển khai: Triển khai → Triển khai mới → Loại: Ứng dụng web
- *   - Chạy dưới tên: Tôi
- *   - Quyền truy cập: Bất kỳ ai (quan trọng để trang thiệp POST được)
- * Copy URL Web App (kết thúc /exec) vào `webAppUrl` trong invitation.vi.ts
+ *
+ * Trước khi Triển khai Web App: chọn authorizeOnce → Chạy → ủy quyền Sheet.
+ *
+ * Nếu màn hình Google báo "Ứng dụng này đã bị chặn" (không có nút bỏ qua):
+ *   - Cài đặt dự án → Dự án Google Cloud: thử "Ngắt liên kết" về dự án mặc định của Apps Script rồi Chạy authorizeOnce lại.
+ *   - Hoặc bỏ Apps Script: trong site đổi RSVP sang type 'webhook' + Make.com (Webhook → Google Sheets).
+ *
+ * Triển khai Web App: Chạy dưới tên Tôi, quyền Bất kỳ ai. URL /exec → webAppUrl trong invitation.vi.ts
+ *
+ * Sheet chỉ 4 cột: Thời gian, Họ tên, Tham dự, Lời nhắn. Nếu sheet cũ còn cột Ngôn ngữ / Cặp đôi / User-Agent, xóa các cột đó trên Google Sheet cho gọn.
  */
 
-var HEADER = ['Thời gian', 'Họ tên', 'Tham dự', 'Lời nhắn', 'Ngôn ngữ', 'Cặp đôi', 'User-Agent']
+var HEADER = ['Thời gian', 'Họ tên', 'Tham dự', 'Lời nhắn']
 
 var ATTEND_VI = { yes: 'Có', maybe: 'Chưa chắc', no: 'Không' }
+
+/** Chạy một lần (nút Chạy) để Google xin quyền truy cập Sheet — bắt buộc trước khi triển khai Web App. */
+function authorizeOnce() {
+  SpreadsheetApp.getActiveSpreadsheet().getName()
+}
 
 function jsonOut(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON)
@@ -56,10 +67,8 @@ function doPost(e) {
       return jsonOut({ ok: false, error: 'Payload không hợp lệ' })
     }
     var data = body.data || {}
-    var couple = body.couple || {}
     var attendKey = data.attendance
     var attendLabel = ATTEND_VI[attendKey] || attendKey || ''
-    var coupleStr = [couple.brideName, couple.groomName].filter(Boolean).join(' & ')
 
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet()
     ensureHeader(sheet)
@@ -68,9 +77,6 @@ function doPost(e) {
       String(data.fullName || ''),
       attendLabel,
       String(data.message || ''),
-      String(body.locale || ''),
-      coupleStr,
-      String(body.userAgent || ''),
     ])
     return jsonOut({ ok: true })
   } catch (err) {
