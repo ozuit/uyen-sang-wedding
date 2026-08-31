@@ -84,8 +84,8 @@ export const invitationVi: InvitationContent = {
     },
     {
       key: 'party',
-      title: 'Tiệc chung vui',
-      dateText: 'Thứ bảy, ngày 07/11/2026',
+      title: 'Tiệc nhà gái',
+      dateText: 'Chủ nhật 01/11/2026',
       timeText: '11:00',
       locationName: 'Trung tâm văn hóa (cơ sở 2) Tân Uyên',
       addressLines: [
