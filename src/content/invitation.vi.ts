@@ -66,9 +66,9 @@ export const invitationVi: InvitationContent = {
     {
       key: 'church',
       title: 'Lễ thành hôn (nhà thờ)',
-      dateText: 'Thứ Bảy, 09/05/2026',
+      dateText: 'Thứ bảy, ngày 07/11/2026',
       timeText: '09:30',
-      lunarText: 'Nhằm 23/03 năm Bính Ngọ',
+      lunarText: 'Nhằm 29/09 năm Bính Ngọ',
       locationName: 'Giáo điểm Uyên Hưng',
       addressLines: ['Giáo xứ Bến Sắn', 'Giáo phận Phú Cường'],
       googleMapsUrl: 'https://maps.app.goo.gl/u3vF4a3JkwrVbvzi8',
@@ -77,14 +77,14 @@ export const invitationVi: InvitationContent = {
     {
       key: 'home',
       title: 'Lễ tại tư gia',
-      dateText: 'Chủ Nhật, 10/05/2026',
+      dateText: 'Thứ bảy, ngày 07/11/2026',
       timeText: '09:00',
-      lunarText: 'Nhằm 24/03 năm Bính Ngọ',
+      lunarText: 'Nhằm 29/09 năm Bính Ngọ',
     },
     {
       key: 'party',
       title: 'Tiệc chung vui',
-      dateText: 'Chủ Nhật, 10/05/2026',
+      dateText: 'Thứ bảy, ngày 07/11/2026',
       timeText: '11:00',
       locationName: 'Trung tâm văn hóa (cơ sở 2) Tân Uyên',
       addressLines: [
