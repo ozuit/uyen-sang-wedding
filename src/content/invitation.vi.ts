@@ -37,8 +37,8 @@ export type InvitationContent = {
     groomNote?: string
   }
   families: {
-    brideParents: string
-    groomParents: string
+    brideParents: string[]
+    groomParents: string[]
   }
   events: InvitationEvent[]
   rsvp: RsvpConfig
@@ -55,14 +55,12 @@ export type InvitationContent = {
 export const invitationVi: InvitationContent = {
   locale: 'vi',
   couple: {
-    brideName: 'Tống Mỹ Nhung',
-    brideNote: 'Teresa',
-    groomName: 'Châu Thọ Triết',
-    groomNote: 'Giacobe',
+    brideName: 'Tống Phương Uyên',
+    groomName: 'Lê Quang Sang',
   },
   families: {
-    brideParents: 'Ông Bà: Tống Đức Cường, Huỳnh Thị Mỹ',
-    groomParents: 'Ông Bà: Giuse Châu Thọ Thông, Agata Nguyễn Thị Hằng Nga',
+    groomParents: ['Ông: Lê Quang Quân', 'Bà: Nguyễn Thị Ngọc Hoa'],
+    brideParents: ['Ông: Tống Đức Dũng', 'Bà: Trần Thị Huy Trang'],
   },
   events: [
     {
