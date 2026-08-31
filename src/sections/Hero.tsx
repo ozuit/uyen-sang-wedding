@@ -13,8 +13,8 @@ export default function Hero({ content }: { content: InvitationContent }) {
       />
       <div className="absolute inset-0 bg-black/50" />
 
-      <Section id="top" className="relative">
-        <div className="relative mx-auto flex w-full min-w-0 flex-col items-center px-5 pt-28 text-center text-white md:px-16 lg:px-24 xl:px-[200px] md:pt-[220px]">
+      <Section id="top" className="relative flex h-full items-center justify-center">
+        <div className="relative mx-auto flex w-full min-w-0 translate-y-[12vh] flex-col items-center px-5 text-center text-white md:translate-y-[6vh] md:px-16 lg:px-24 xl:px-[200px]">
           <div className="w-full min-w-0 px-1 text-center font-(family-name:--font-script) text-[clamp(40px,8vw,72px)] leading-[1.15] md:px-4 md:text-[clamp(34px,5.2vw,72px)] md:leading-[1.2]">
             <div className="flex flex-col items-center md:inline-flex md:flex-row md:flex-nowrap md:justify-center md:whitespace-nowrap">
               <span>{content.couple.groomName}</span>
