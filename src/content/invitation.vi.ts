@@ -100,7 +100,8 @@ export const invitationVi: InvitationContent = {
   ],
   rsvp: {
     type: 'googleSheet',
-    webAppUrl: 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec',
+    webAppUrl:
+      'https://script.google.com/macros/s/AKfycbxh09yYUEnphutfEa4rGBoMVSP7T3OjOGR4bZ7d6xz2Y-HfZRzJ1pOWuECis6WHRRgK/exec',
   },
   story: {
     leftText: '',
