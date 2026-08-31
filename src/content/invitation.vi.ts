@@ -65,14 +65,15 @@ export const invitationVi: InvitationContent = {
   events: [
     {
       key: 'church',
-      title: 'Lễ thành hôn (nhà thờ)',
-      dateText: 'Thứ bảy, ngày 07/11/2026',
-      timeText: '09:30',
+      title: 'Tiệc nhà trai',
+      dateText: 'Thứ bảy 07/11/2026',
+      timeText: '11:00',
       lunarText: 'Nhằm 29/09 năm Bính Ngọ',
-      locationName: 'Giáo điểm Uyên Hưng',
-      addressLines: ['Giáo xứ Bến Sắn', 'Giáo phận Phú Cường'],
-      googleMapsUrl: 'https://maps.app.goo.gl/u3vF4a3JkwrVbvzi8',
-      mapQueryForEmbed: 'Giáo điểm Uyên Hưng, Giáo xứ Bến Sắn, Giáo phận Phú Cường',
+      locationName: 'Khu phố 3, phường Bình Cơ, TP.HCM',
+      addressLines: [],
+      googleMapsUrl:
+        'https://www.google.com/maps/search/?api=1&query=Khu+ph%E1%BB%91+3,+ph%C6%B0%E1%BB%9Dng+B%C3%ACnh+C%C6%A1,+TP.HCM',
+      mapQueryForEmbed: 'Khu phố 3, phường Bình Cơ, TP.HCM',
     },
     {
       key: 'home',

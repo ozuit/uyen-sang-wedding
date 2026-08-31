@@ -117,7 +117,7 @@ export default function Events({ content }: { content: InvitationContent }) {
                     className="h-[65px] w-[65px]"
                   />
                   <div className="w-full min-w-0 text-center text-[32px] font-bold leading-[1.2] md:text-[39px]">
-                    {church?.title ?? "Lễ thành hôn"}
+                    {church?.title ?? "Tiệc nhà trai"}
                   </div>
                 </div>
                 <div className="flex w-full min-w-0 flex-col items-center gap-1 text-center md:gap-1.5">
