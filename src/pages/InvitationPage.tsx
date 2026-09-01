@@ -20,7 +20,7 @@ export default function InvitationPage({ side }: { side: InvitationSide }) {
           <CountdownSection content={invitationVi} side={side} />
         </div>
         <div className="px-4 py-[50px] md:px-10 lg:px-16">
-          <CoupleIntro content={invitationVi} />
+          <CoupleIntro content={invitationVi} side={side} />
         </div>
         <div className="px-4 py-[50px] md:px-10 lg:px-16">
           <Events content={invitationVi} side={side} />
