@@ -66,14 +66,13 @@ export default function RSVP({
     try {
       const payload = {
         type: 'wedding_rsvp' as const,
-        locale: content.locale,
-        couple: content.couple,
         submittedAt: new Date().toISOString(),
         data: {
-          ...form,
-          guestSide: guestSide ?? form.guestSide,
+          fullName: form.fullName.trim(),
+          message: form.message.trim(),
+          attendance: form.attendance,
+          guestSide: guestSide ?? '',
         },
-        userAgent: navigator.userAgent,
       }
       // form-urlencoded + field `payload` — tránh preflight CORS với Google Apps Script Web App
       const body = new URLSearchParams()
