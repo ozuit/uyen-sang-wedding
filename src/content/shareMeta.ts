@@ -1,17 +1,21 @@
+export type ShareRoutePath = '/' | '/nha-trai' | '/nha-gai'
+
 export type ShareMeta = {
   title: string
   description: string
-  /** Root-relative path under `public/`, e.g. `/gallery/20.png`. */
+  /** Root-relative path under `public/`, e.g. `/gallery/20.webp`. */
   imagePath: string
   siteName: string
 }
 
-export const shareMeta: ShareMeta = {
+const defaultShareMeta: ShareMeta = {
   title: 'Thiệp mời cưới Uyên & Sang',
   description: 'Ngày vui sẽ trọn vẹn hơn khi có sự hiện diện của bạn.',
   imagePath: '/gallery/20.webp',
   siteName: 'uyen-sang-wedding.online',
 }
+
+export const shareMeta = defaultShareMeta
 
 function escapeHtml(value: string): string {
   return value
@@ -27,17 +31,36 @@ function imageMimeType(path: string): string {
   return 'image/png'
 }
 
-export function buildShareMetaTags(siteUrl: string, basePath: string): string {
-  const normalizedSiteUrl = siteUrl.replace(/\/$/, '')
-  const normalizedBase =
-    basePath === '/' || basePath === '' ? '' : basePath.replace(/\/$/, '')
-  const pageUrl = `${normalizedSiteUrl}${normalizedBase}/`
-  const imageUrl = `${normalizedSiteUrl}${normalizedBase}${shareMeta.imagePath}`
-  const imageType = imageMimeType(shareMeta.imagePath)
+function normalizeBasePath(basePath: string): string {
+  return basePath === '/' || basePath === '' ? '' : basePath.replace(/\/$/, '')
+}
 
-  const title = escapeHtml(shareMeta.title)
-  const description = escapeHtml(shareMeta.description)
-  const siteName = escapeHtml(shareMeta.siteName)
+export function buildPageUrl(
+  siteUrl: string,
+  basePath: string,
+  routePath: ShareRoutePath = '/',
+): string {
+  const normalizedSiteUrl = siteUrl.replace(/\/$/, '')
+  const normalizedBase = normalizeBasePath(basePath)
+  if (routePath === '/') {
+    return `${normalizedSiteUrl}${normalizedBase}/`
+  }
+  return `${normalizedSiteUrl}${normalizedBase}${routePath}`
+}
+
+export function buildShareMetaTags(
+  siteUrl: string,
+  basePath: string,
+  routePath: ShareRoutePath = '/',
+): string {
+  const pageUrl = buildPageUrl(siteUrl, basePath, routePath)
+  const normalizedBase = normalizeBasePath(basePath)
+  const imageUrl = `${siteUrl.replace(/\/$/, '')}${normalizedBase}${defaultShareMeta.imagePath}`
+  const imageType = imageMimeType(defaultShareMeta.imagePath)
+
+  const title = escapeHtml(defaultShareMeta.title)
+  const description = escapeHtml(defaultShareMeta.description)
+  const siteName = escapeHtml(defaultShareMeta.siteName)
 
   return [
     `<title>${title}</title>`,
@@ -57,4 +80,30 @@ export function buildShareMetaTags(siteUrl: string, basePath: string): string {
     `<meta name="twitter:description" content="${description}" />`,
     `<meta name="twitter:image" content="${imageUrl}" />`,
   ].join('\n    ')
+}
+
+export function patchShareMetaPageUrl(
+  html: string,
+  siteUrl: string,
+  basePath: string,
+  routePath: ShareRoutePath,
+): string {
+  const pageUrl = buildPageUrl(siteUrl, basePath, routePath)
+  return html
+    .replace(
+      /<link rel="canonical" href="[^"]*" \/>/,
+      `<link rel="canonical" href="${pageUrl}" />`,
+    )
+    .replace(
+      /<meta property="og:url" content="[^"]*" \/>/,
+      `<meta property="og:url" content="${pageUrl}" />`,
+    )
+}
+
+export function shareRoutePathFromSide(
+  side: 'both' | 'nha-trai' | 'nha-gai',
+): ShareRoutePath {
+  if (side === 'nha-trai') return '/nha-trai'
+  if (side === 'nha-gai') return '/nha-gai'
+  return '/'
 }
