@@ -1,25 +1,39 @@
 /**
- * Dán file này vào Apps Script gắn với Google Sheet (Mở Sheet → Tiện ích mở rộng → Apps Script).
+ * Dán TOÀN BỘ file này vào Apps Script gắn với Google Sheet.
  *
- * Trước khi Triển khai Web App: chọn authorizeOnce → Chạy → ủy quyền Sheet.
+ * BẮT BUỘC sau khi dán:
+ * 1. Chọn hàm setupSheet → bấm Chạy (sửa header sheet thành 5 cột)
+ * 2. Triển khai → Quản lý triển khai → Chỉnh sửa (biểu tượng bút) → Phiên bản mới → Triển khai
+ *    (Chỉ bấm Lưu KHÔNG cập nhật Web App — phải tạo phiên bản triển khai mới!)
+ * 3. Mở URL Web App /exec trên trình duyệt — phải thấy version "5-col-khach"
  *
- * Nếu màn hình Google báo "Ứng dụng này đã bị chặn" (không có nút bỏ qua):
- *   - Cài đặt dự án → Dự án Google Cloud: thử "Ngắt liên kết" về dự án mặc định của Apps Script rồi Chạy authorizeOnce lại.
- *   - Hoặc bỏ Apps Script: trong site đổi RSVP sang type 'webhook' + Make.com (Webhook → Google Sheets).
- *
- * Triển khai Web App: Chạy dưới tên Tôi, quyền Bất kỳ ai. URL /exec → webAppUrl trong invitation.vi.ts
- *
- * Sheet 5 cột: Thời gian, Họ tên, Tham dự, Lời nhắn, Khách (Nhà trai / Nhà gái).
- * Nếu sheet cũ còn cột Ngôn ngữ / Cặp đôi / User-Agent, xóa các cột đó trên Google Sheet cho gọn.
+ * Sheet 5 cột: Thời gian | Họ tên | Tham dự | Lời nhắn | Khách
+ * Khách = "Nhà trai" hoặc "Nhà gái" (tự gắn theo link /nha-trai hoặc /nha-gai)
  */
+
+var SCRIPT_VERSION = '5-col-khach'
 
 var HEADER = ['Thời gian', 'Họ tên', 'Tham dự', 'Lời nhắn', 'Khách']
 
 var ATTEND_VI = { yes: 'Có', maybe: 'Chưa chắc', no: 'Không' }
 
-/** Chạy một lần (nút Chạy) để Google xin quyền truy cập Sheet — bắt buộc trước khi triển khai Web App. */
+/** Chạy một lần để Google xin quyền truy cập Sheet. */
 function authorizeOnce() {
   SpreadsheetApp.getActiveSpreadsheet().getName()
+}
+
+/** Chạy một lần để sửa hàng tiêu đề sheet cho khớp 5 cột mới. */
+function setupSheet() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet()
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(HEADER)
+    return
+  }
+  sheet.getRange(1, 1, 1, HEADER.length).setValues([HEADER])
+  var extraCols = sheet.getLastColumn() - HEADER.length
+  if (extraCols > 0) {
+    sheet.deleteColumns(HEADER.length + 1, extraCols)
+  }
 }
 
 function jsonOut(obj) {
@@ -47,16 +61,29 @@ function parseBody(e) {
   return null
 }
 
+function headersMatch(sheet) {
+  if (sheet.getLastRow() === 0) return false
+  var current = sheet.getRange(1, 1, 1, HEADER.length).getDisplayValues()[0]
+  for (var i = 0; i < HEADER.length; i++) {
+    if (current[i] !== HEADER[i]) return false
+  }
+  return true
+}
+
 function ensureHeader(sheet) {
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(HEADER)
     return
   }
-  var v = sheet.getRange(1, 1).getDisplayValue()
-  if (v !== HEADER[0]) {
-    sheet.insertRowBefore(1)
-    sheet.getRange(1, 1, 1, HEADER.length).setValues([HEADER])
+  if (!headersMatch(sheet)) {
+    setupSheet()
   }
+}
+
+function normalizeGuestSide(data) {
+  var value = String(data.guestSide || '').trim()
+  if (value === 'Nhà trai' || value === 'Nhà gái') return value
+  return value
 }
 
 function doPost(e) {
@@ -78,9 +105,9 @@ function doPost(e) {
       String(data.fullName || ''),
       attendLabel,
       String(data.message || ''),
-      String(data.guestSide || ''),
+      normalizeGuestSide(data),
     ])
-    return jsonOut({ ok: true })
+    return jsonOut({ ok: true, version: SCRIPT_VERSION })
   } catch (err) {
     return jsonOut({ ok: false, error: String(err.message || err) })
   } finally {
@@ -89,5 +116,10 @@ function doPost(e) {
 }
 
 function doGet() {
-  return jsonOut({ ok: true, hint: 'POST JSON hoặc form field payload' })
+  return jsonOut({
+    ok: true,
+    version: SCRIPT_VERSION,
+    columns: HEADER,
+    hint: 'POST form field payload (type=wedding_rsvp)',
+  })
 }
