@@ -1,6 +1,7 @@
 import BackgroundMusic from "../components/BackgroundMusic";
 import FigmaCanvas from "../components/FigmaCanvas";
 import { invitationVi } from "../content/invitation.vi";
+import { useShareMeta } from "../hooks/useShareMeta";
 import type { InvitationSide } from "../lib/invitationSide";
 import CountdownSection from "../sections/CountdownSection";
 import CoupleIntro from "../sections/CoupleIntro";
@@ -11,6 +12,8 @@ import Hero from "../sections/Hero";
 import RSVP from "../sections/RSVP";
 
 export default function InvitationPage({ side }: { side: InvitationSide }) {
+  useShareMeta(side);
+
   return (
     <main className="min-h-dvh">
       <BackgroundMusic />
