@@ -1,11 +1,13 @@
 import { useMemo, useState } from 'react'
 import type { InvitationContent } from '../content/invitation.vi'
+import { guestSideLabel, type InvitationSide } from '../lib/invitationSide'
 import { Card, Section } from './_shared'
 
 type RsvpForm = {
   fullName: string
   message: string
   attendance: 'yes' | 'maybe' | 'no'
+  guestSide: string
 }
 
 function isValidUrl(value: string) {
@@ -26,13 +28,21 @@ function rsvpSubmitTarget(rsvp: InvitationContent['rsvp']): { enabled: boolean; 
   return { enabled: false, url: '' }
 }
 
-export default function RSVP({ content }: { content: InvitationContent }) {
+export default function RSVP({
+  content,
+  side,
+}: {
+  content: InvitationContent
+  side: InvitationSide
+}) {
   const { enabled: isEnabled, url: endpointUrl } = rsvpSubmitTarget(content.rsvp)
+  const guestSide = guestSideLabel(side)
 
   const [form, setForm] = useState<RsvpForm>({
     fullName: '',
     message: '',
     attendance: 'yes',
+    guestSide: guestSide ?? '',
   })
   const [status, setStatus] = useState<
     | { state: 'idle' }
@@ -59,7 +69,10 @@ export default function RSVP({ content }: { content: InvitationContent }) {
         locale: content.locale,
         couple: content.couple,
         submittedAt: new Date().toISOString(),
-        data: form,
+        data: {
+          ...form,
+          guestSide: guestSide ?? form.guestSide,
+        },
         userAgent: navigator.userAgent,
       }
       // form-urlencoded + field `payload` — tránh preflight CORS với Google Apps Script Web App

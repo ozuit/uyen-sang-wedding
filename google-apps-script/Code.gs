@@ -9,10 +9,11 @@
  *
  * Triển khai Web App: Chạy dưới tên Tôi, quyền Bất kỳ ai. URL /exec → webAppUrl trong invitation.vi.ts
  *
- * Sheet chỉ 4 cột: Thời gian, Họ tên, Tham dự, Lời nhắn. Nếu sheet cũ còn cột Ngôn ngữ / Cặp đôi / User-Agent, xóa các cột đó trên Google Sheet cho gọn.
+ * Sheet 5 cột: Thời gian, Họ tên, Tham dự, Lời nhắn, Khách (Nhà trai / Nhà gái).
+ * Nếu sheet cũ còn cột Ngôn ngữ / Cặp đôi / User-Agent, xóa các cột đó trên Google Sheet cho gọn.
  */
 
-var HEADER = ['Thời gian', 'Họ tên', 'Tham dự', 'Lời nhắn']
+var HEADER = ['Thời gian', 'Họ tên', 'Tham dự', 'Lời nhắn', 'Khách']
 
 var ATTEND_VI = { yes: 'Có', maybe: 'Chưa chắc', no: 'Không' }
 
@@ -77,6 +78,7 @@ function doPost(e) {
       String(data.fullName || ''),
       attendLabel,
       String(data.message || ''),
+      String(data.guestSide || ''),
     ])
     return jsonOut({ ok: true })
   } catch (err) {

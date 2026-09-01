@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import type { InvitationContent } from "../content/invitation.vi";
+import type { InvitationSide } from "../lib/invitationSide";
+import { primaryEventForSide } from "../lib/invitationView";
 import { Section } from "./_shared";
 
 function parseDdMmYyyy(dateText: string) {
@@ -62,12 +64,14 @@ function Countdown({ target }: { target: Date | null }) {
 
 export default function CountdownSection({
   content,
+  side,
 }: {
   content: InvitationContent;
+  side: InvitationSide;
 }) {
-  const church = content.events.find((e) => e.key === "church");
-  const countdownDate = church?.dateText ? parseDdMmYyyy(church.dateText) : null;
-  const countdownTime = church?.timeText?.match(/(\d{1,2}):(\d{2})/);
+  const primaryEvent = primaryEventForSide(content, side);
+  const countdownDate = primaryEvent?.dateText ? parseDdMmYyyy(primaryEvent.dateText) : null;
+  const countdownTime = primaryEvent?.timeText?.match(/(\d{1,2}):(\d{2})/);
   const countdownTarget = countdownDate
     ? new Date(
         countdownDate.yyyy,
@@ -87,7 +91,7 @@ export default function CountdownSection({
         </div>
 
         <div className="mt-6 text-center font-sans text-[22px] font-medium leading-[1.35] text-[var(--invite-muted)] md:mt-8 md:text-[20px] md:leading-[1.2]">
-          {church?.dateText ?? ""}
+          {primaryEvent?.dateText ?? ""}
         </div>
 
         <div className="mt-8 flex justify-center">

@@ -1,6 +1,7 @@
 import BackgroundMusic from "../components/BackgroundMusic";
 import FigmaCanvas from "../components/FigmaCanvas";
 import { invitationVi } from "../content/invitation.vi";
+import type { InvitationSide } from "../lib/invitationSide";
 import CountdownSection from "../sections/CountdownSection";
 import CoupleIntro from "../sections/CoupleIntro";
 import Events from "../sections/Events";
@@ -9,26 +10,26 @@ import Gallery from "../sections/Gallery";
 import Hero from "../sections/Hero";
 import RSVP from "../sections/RSVP";
 
-export default function InvitationPage() {
+export default function InvitationPage({ side }: { side: InvitationSide }) {
   return (
     <main className="min-h-dvh">
       <BackgroundMusic />
       <FigmaCanvas>
-        <Hero content={invitationVi} />
+        <Hero content={invitationVi} side={side} />
         <div className="px-4 py-[50px] md:px-10 lg:px-16">
-          <CountdownSection content={invitationVi} />
+          <CountdownSection content={invitationVi} side={side} />
         </div>
         <div className="px-4 py-[50px] md:px-10 lg:px-16">
           <CoupleIntro content={invitationVi} />
         </div>
         <div className="px-4 py-[50px] md:px-10 lg:px-16">
-          <Events content={invitationVi} />
+          <Events content={invitationVi} side={side} />
         </div>
         <div className="px-4 py-[50px] md:px-10 lg:px-16">
           <Gallery content={invitationVi} />
         </div>
         <div className="px-4 py-[50px] md:px-10 lg:px-16">
-          <RSVP content={invitationVi} />
+          <RSVP content={invitationVi} side={side} />
         </div>
         <div className="px-4 py-[50px] md:px-10 lg:px-16">
           <Footer />
