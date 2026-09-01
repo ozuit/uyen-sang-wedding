@@ -1,4 +1,6 @@
 import type { InvitationContent } from "../content/invitation.vi";
+import type { InvitationSide } from "../lib/invitationSide";
+import { groomNameFirst } from "../lib/invitationView";
 import { publicUrl } from "../publicUrl";
 import { Section } from "./_shared";
 
@@ -22,11 +24,63 @@ function CouplePortrait({ alt, src }: { alt: string; src: string }) {
   );
 }
 
+function GroomProfile({ content }: { content: InvitationContent }) {
+  return (
+    <div className="flex w-full min-w-0 flex-1 flex-col items-center gap-5 md:max-w-none">
+      <CouplePortrait
+        alt={content.couple.groomName}
+        src={content.gallery.images[1]?.src ?? publicUrl("/gallery/02.webp")}
+      />
+      <div className="text-center">
+        <div className="w-full text-center font-(family-name:--font-script) text-[clamp(38px,8.5vw,60px)] leading-[1.2] text-[#a40781] whitespace-normal md:whitespace-nowrap md:text-[clamp(32px,7vw,60px)]">
+          {content.couple.groomName}
+        </div>
+        <div className="mt-3 text-[22px] leading-[1.4] text-(--invite-text) md:text-[20px] md:leading-[1.2]">
+          <div className="font-light">Song thân</div>
+          {content.families.groomParents.map((line) => (
+            <div key={line} className="font-medium">
+              {line}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BrideProfile({ content }: { content: InvitationContent }) {
+  return (
+    <div className="flex w-full min-w-0 flex-1 flex-col items-center gap-5 md:max-w-none">
+      <CouplePortrait
+        alt={content.couple.brideName}
+        src={content.gallery.images[2]?.src ?? publicUrl("/gallery/03.webp")}
+      />
+      <div className="text-center">
+        <div className="w-full text-center font-(family-name:--font-script) text-[clamp(38px,8.5vw,60px)] leading-[1.2] text-[#a40781] whitespace-normal md:whitespace-nowrap md:text-[clamp(32px,7vw,60px)]">
+          {content.couple.brideName}
+        </div>
+        <div className="mt-3 text-[22px] leading-[1.4] text-(--invite-text) md:text-[20px] md:leading-[1.2]">
+          <div className="font-light">Song thân</div>
+          {content.families.brideParents.map((line) => (
+            <div key={line} className="font-medium">
+              {line}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function CoupleIntro({
   content,
+  side,
 }: {
   content: InvitationContent;
+  side: InvitationSide;
 }) {
+  const groomFirst = groomNameFirst(side);
+
   return (
     <Section id="couple">
       <div className="w-full rounded-[20px] bg-white px-5 py-8 shadow-[0px_0px_40px_0px_rgba(231,103,103,0.15)] md:px-[60px] md:py-[48px]">
@@ -40,45 +94,17 @@ export default function CoupleIntro({
         </div>
 
         <div className="mt-8 flex w-full flex-col items-center justify-center gap-10 md:mt-12 md:flex-row md:items-start md:gap-10 lg:gap-16">
-          <div className="flex w-full min-w-0 flex-1 flex-col items-center gap-5 md:max-w-none">
-            <CouplePortrait
-              alt={content.couple.groomName}
-              src={content.gallery.images[1]?.src ?? publicUrl("/gallery/02.webp")}
-            />
-            <div className="text-center">
-              <div className="w-full text-center font-(family-name:--font-script) text-[clamp(38px,8.5vw,60px)] leading-[1.2] text-[#a40781] whitespace-normal md:whitespace-nowrap md:text-[clamp(32px,7vw,60px)]">
-                {content.couple.groomName}
-              </div>
-              <div className="mt-3 text-[22px] leading-[1.4] text-(--invite-text) md:text-[20px] md:leading-[1.2]">
-                <div className="font-light">Song thân</div>
-                {content.families.groomParents.map((line) => (
-                  <div key={line} className="font-medium">
-                    {line}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex w-full min-w-0 flex-1 flex-col items-center gap-5 md:max-w-none">
-            <CouplePortrait
-              alt={content.couple.brideName}
-              src={content.gallery.images[2]?.src ?? publicUrl("/gallery/03.webp")}
-            />
-            <div className="text-center">
-              <div className="w-full text-center font-(family-name:--font-script) text-[clamp(38px,8.5vw,60px)] leading-[1.2] text-[#a40781] whitespace-normal md:whitespace-nowrap md:text-[clamp(32px,7vw,60px)]">
-                {content.couple.brideName}
-              </div>
-              <div className="mt-3 text-[22px] leading-[1.4] text-(--invite-text) md:text-[20px] md:leading-[1.2]">
-                <div className="font-light">Song thân</div>
-                {content.families.brideParents.map((line) => (
-                  <div key={line} className="font-medium">
-                    {line}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          {groomFirst ? (
+            <>
+              <GroomProfile content={content} />
+              <BrideProfile content={content} />
+            </>
+          ) : (
+            <>
+              <BrideProfile content={content} />
+              <GroomProfile content={content} />
+            </>
+          )}
         </div>
       </div>
     </Section>
