@@ -87,15 +87,13 @@ export const invitationVi: InvitationContent = {
       title: 'Tiệc nhà gái',
       dateText: 'Chủ nhật 01/11/2026',
       timeText: '11:00',
-      locationName: 'Trung tâm văn hóa (cơ sở 2) Tân Uyên',
+      locationName: 'Trung tâm văn hóa xã Bạch Đằng cũ',
       addressLines: [
-        'Trung tâm văn hóa xã Bạch Đằng Cũ',
-        'Phường Tân Uyên, TP. Hồ Chí Minh',
-        '(Tân Uyên, Bình Dương cũ)',
+        'Khu phố Bạch Đằng 2, phường Tân Uyên, thành phố Hồ Chí Minh',
       ],
       googleMapsUrl: 'https://maps.app.goo.gl/9wFqH8SPTgcWYjWc7',
       mapQueryForEmbed:
-        'Trung tâm văn hóa (cơ sở 2) Tân Uyên, Phường Tân Uyên, TP. Hồ Chí Minh',
+        'Trung tâm văn hóa xã Bạch Đằng cũ, Khu phố Bạch Đằng 2, phường Tân Uyên, thành phố Hồ Chí Minh',
     },
   ],
   rsvp: {
