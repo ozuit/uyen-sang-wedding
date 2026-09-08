@@ -69,11 +69,12 @@ export const invitationVi: InvitationContent = {
       dateText: 'Thứ bảy 07/11/2026',
       timeText: '11:00',
       lunarText: 'Nhằm 29/09 năm Bính Ngọ',
-      locationName: 'Khu phố 3, phường Bình Cơ, TP.HCM',
+      locationName:
+        'Khu nhà ở Dương Tiến Phát hẻm 68, khu phố 3, phường Bình Cơ, TP.HCM',
       addressLines: [],
-      googleMapsUrl:
-        'https://www.google.com/maps/search/?api=1&query=Khu+ph%E1%BB%91+3,+ph%C6%B0%E1%BB%9Dng+B%C3%ACnh+C%C6%A1,+TP.HCM',
-      mapQueryForEmbed: 'Khu phố 3, phường Bình Cơ, TP.HCM',
+      googleMapsUrl: 'https://maps.app.goo.gl/Jo73VagQXSv2TjF7A?g_st=iz',
+      mapQueryForEmbed:
+        'Khu nhà ở Dương Tiến Phát hẻm 68, khu phố 3, phường Bình Cơ, TP.HCM',
     },
     {
       key: 'home',
