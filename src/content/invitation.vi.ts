@@ -68,33 +68,33 @@ export const invitationVi: InvitationContent = {
       title: 'Tiệc nhà trai',
       dateText: 'Thứ bảy 07/11/2026',
       timeText: '11:00',
-      lunarText: 'Nhằm 29/09 năm Bính Ngọ',
+      lunarText: '',
       locationName:
-        'Khu nhà ở Dương Tiến Phát hẻm 68, khu phố 3, phường Bình Cơ, TP.HCM',
-      addressLines: [],
+        'Khu dân cư Dương Tiến Phát',
+      addressLines: ['Hẻm 68, khu phố 3, phường Bình Cơ, TP.HCM'],
       googleMapsUrl: 'https://maps.app.goo.gl/Jo73VagQXSv2TjF7A?g_st=iz',
       mapQueryForEmbed:
-        'Khu nhà ở Dương Tiến Phát hẻm 68, khu phố 3, phường Bình Cơ, TP.HCM',
+        'Khu dân cư Dương Tiến Phát hẻm 68, khu phố 3, phường Bình Cơ, TP.HCM',
     },
     {
       key: 'home',
       title: 'Lễ tại tư gia',
       dateText: 'Thứ bảy, ngày 07/11/2026',
       timeText: '09:00',
-      lunarText: 'Nhằm 29/09 năm Bính Ngọ',
+      lunarText: '',
     },
     {
       key: 'party',
       title: 'Tiệc nhà gái',
       dateText: 'Chủ nhật 01/11/2026',
       timeText: '11:00',
-      locationName: 'Trung tâm văn hóa xã Bạch Đằng cũ',
+      locationName: 'Trung tâm văn hóa xã Bạch Đằng (cũ)',
       addressLines: [
-        'Khu phố Bạch Đằng 2, phường Tân Uyên, thành phố Hồ Chí Minh',
+        'Khu phố Bạch Đằng 2, phường Tân Uyên, TP.HCM',
       ],
       googleMapsUrl: 'https://maps.app.goo.gl/9wFqH8SPTgcWYjWc7',
       mapQueryForEmbed:
-        'Trung tâm văn hóa xã Bạch Đằng cũ, Khu phố Bạch Đằng 2, phường Tân Uyên, thành phố Hồ Chí Minh',
+        'Trung tâm văn hóa xã Bạch Đằng (cũ), Khu phố Bạch Đằng 2, phường Tân Uyên, thành phố Hồ Chí Minh',
     },
   ],
   rsvp: {
